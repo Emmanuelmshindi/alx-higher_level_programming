@@ -19,7 +19,7 @@ if (head == NULL)
 return (NULL);
 /* create the new node */
 new_node = malloc(sizeof(listint_t));
-if (new_node = NULL)
+if (new_node == NULL)
 return (NULL);
 /* access the n field of the new_node and initialize it as n */
 new_node->n = number;
