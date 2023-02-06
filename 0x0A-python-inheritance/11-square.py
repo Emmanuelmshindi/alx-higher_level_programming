@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Square class method"""
+"""Square class Module"""
 Rectangle = __import__("9-rectangle").Rectangle
 
 
@@ -16,4 +16,5 @@ class Square(Rectangle):
         return self.__size ** 2
 
     def __str__(self):
-        Print("[Square] {}/{}".format(width, height)
+        """Method that returns a string"""
+        return "[Square] {}/{}".format(self.__size, self.__size)
