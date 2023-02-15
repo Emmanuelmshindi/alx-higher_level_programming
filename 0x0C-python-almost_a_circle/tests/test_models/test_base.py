@@ -2,14 +2,14 @@
 """Defines unittests for base.py.
 
 Unittest classes:
-    TestBase_instantiation - line 23
-    TestBase_to_json_string - line 110
-    TestBase_save_to_file - line 156
-    TestBase_from_json_string - line 234
-    TestBase_create - line 288
-    TestBase_load_from_file - line 340
-    TestBase_save_to_file_csv - line 406
-    TestBase_load_from_file_csv - line 484
+    TestBase_instantiation - line 21
+    TestBase_to_json_string - line 108
+    TestBase_save_to_file - line 154
+    TestBase_from_json_string - line 232
+    TestBase_create - line 286
+    TestBase_load_from_file - line 338
+    TestBase_save_to_file_csv - line 404
+    TestBase_load_from_file_csv - line 482
 """
 import os
 import unittest
@@ -120,7 +120,7 @@ class TestBase_to_json_string(unittest.TestCase):
         r1 = Rectangle(2, 3, 5, 19, 2)
         r2 = Rectangle(4, 2, 4, 1, 12)
         list_dicts = [r1.to_dictionary(), r2.to_dictionary()]
-	self.assertTrue(len(Base.to_json_string(list_dicts)) == 106)
+        self.assertTrue(len(Base.to_json_string(list_dicts)) == 106)
 
     def test_to_json_string_square_type(self):
         s = Square(10, 2, 3, 4)
@@ -129,7 +129,6 @@ class TestBase_to_json_string(unittest.TestCase):
     def test_to_json_string_square_one_dict(self):
         s = Square(10, 2, 3, 4)
         self.assertTrue(len(Base.to_json_string([s.to_dictionary()])) == 39)
-
 
     def test_to_json_string_square_two_dicts(self):
         s1 = Square(10, 2, 3, 4)
@@ -230,7 +229,6 @@ class TestBase_save_to_file(unittest.TestCase):
             Square.save_to_file([], 1)
 
 
-
 class TestBase_from_json_string(unittest.TestCase):
     """Unittests for testing from_json_string method of Base class."""
 
@@ -329,7 +327,6 @@ class TestBase_create(unittest.TestCase):
         s1_dictionary = s1.to_dictionary()
         s2 = Square.create(**s1_dictionary)
         self.assertIsNot(s1, s2)
-
 
     def test_create_square_equals(self):
         s1 = Square(3, 5, 1, 7)
@@ -481,6 +478,7 @@ class TestBase_save_to_file_csv(unittest.TestCase):
         with self.assertRaises(TypeError):
             Square.save_to_file_csv([], 1)
 
+
 class TestBase_load_from_file_csv(unittest.TestCase):
     """Unittests for testing load_from_file_csv method of Base class."""
 
@@ -521,7 +519,7 @@ class TestBase_load_from_file_csv(unittest.TestCase):
         s1 = Square(5, 1, 3, 3)
         s2 = Square(9, 5, 2, 3)
         Square.save_to_file_csv([s1, s2])
-        list_squares_output = square.load_from_file_csv()
+        list_squares_output = Square.load_from_file_csv()
         self.assertEqual(str(s1), str(list_squares_output[0]))
 
     def test_load_from_file_csv_second_square(self):
@@ -545,6 +543,7 @@ class TestBase_load_from_file_csv(unittest.TestCase):
     def test_load_from_file_csv_more_than_one_arg(self):
         with self.assertRaises(TypeError):
             Base.load_from_file_csv([], 1)
+
 
 if __name__ == "__main__":
     unittest.main()
