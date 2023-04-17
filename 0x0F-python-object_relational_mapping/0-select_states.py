@@ -25,6 +25,11 @@ if __name__ == '__main__':
             passwd=password, db=database)
 
     cur = db.cursor()
+
+    cur.execute("TRUNCATE TABLE states")
+
+    cur.execute(open("0-select_states.sql", "r").read())
+
     cur.execute("SELECT * FROM states ORDER BY id ASC")
 
     query_rows = cur.fetchall()

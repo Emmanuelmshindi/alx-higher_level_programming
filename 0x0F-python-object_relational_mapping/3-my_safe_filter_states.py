@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """
-This script lists all states in a MySQL database from a table called 'states',
-with a name starting with N.
-The MySQL username, password and database name are passed as arguments in the
-command line.
+This script takes an argument and displays all values of the staes
+table that match the argument
 """
 
 import sys
@@ -13,6 +11,7 @@ if __name__ == '__main__':
     username = sys.argv[1]
     password = sys.argv[2]
     database = sys.argv[3]
+    state_name = sys.argv[4]
 
     db = MySQLdb.connect(host="localhost", port=3306, user=username,
             passwd=password, db=database)
@@ -23,7 +22,7 @@ if __name__ == '__main__':
 
     cur.execute(open("0-select_states.sql", "r").read())
 
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    cur.execute("SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name))
 
     query_rows = cur.fetchall()
 

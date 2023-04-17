@@ -1,9 +1,7 @@
 #!/usr/bin/python3
 """
-This script lists all states in a MySQL database from a table called 'states',
-with a name starting with N.
-The MySQL username, password and database name are passed as arguments in the
-command line.
+This script lists all cities from the database hbtn_0e_4_usa.
+It takes 3 arguments: mysql username, mysql password and database name
 """
 
 import sys
@@ -19,11 +17,7 @@ if __name__ == '__main__':
 
     cur = db.cursor()
 
-    cur.execute("TRUNCATE TABLE states")
-
-    cur.execute(open("0-select_states.sql", "r").read())
-
-    cur.execute("SELECT * FROM states WHERE name LIKE 'N%' ORDER BY id ASC")
+    cur.execute("SELECT cities.id, cities.name, states.name FROM cities INNER JOIN states ON states.id = cities.state_id ORDER BY cities.id ASC")
 
     query_rows = cur.fetchall()
 
