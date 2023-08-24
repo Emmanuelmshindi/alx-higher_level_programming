@@ -22,7 +22,9 @@ if __name__ == '__main__':
 
     cur.execute(open("0-select_states.sql", "r").read())
 
-    cur.execute("SELECT * FROM states WHERE name = '{}' ORDER BY id ASC".format(state_name))
+    query = "SELECT * FROM states WHERE name = %s ORDER BY id ASC"
+
+    cur.execute(query, (state_name,))
 
     query_rows = cur.fetchall()
 
