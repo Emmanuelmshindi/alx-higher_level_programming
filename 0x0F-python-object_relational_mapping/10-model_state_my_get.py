@@ -2,7 +2,8 @@
 """
     A script that returns the state id from hbtn_0e_6_usa that contains
     the name passed as an argument
-    Username, password, dbname and state will be passed as arguments to the script.
+    Username, password, dbname and state will be passed as arguments
+    to the script.
 """
 
 
@@ -23,7 +24,8 @@ if __name__ == '__main__':
     session = Session()
 
     # Extract the id of the name passed and print
-    state = session.query(State).filter(State.name == sys.argv[4]).one_or_none()
+    state = session.query(State) \
+                   .filter(State.name == sys.argv[4]).one_or_none()
 
     if state:
         print(state.id)
