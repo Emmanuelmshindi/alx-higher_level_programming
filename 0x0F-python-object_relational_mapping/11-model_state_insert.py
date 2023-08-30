@@ -27,6 +27,8 @@ session.add(state)
 
 session.commit()
 
-print(state.id)
+state_added = session.query(State).filter(State.name == 'Louisiana').one()
+
+print(state_added.id)
 
 session.close()
