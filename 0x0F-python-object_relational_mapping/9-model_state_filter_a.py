@@ -19,7 +19,7 @@ if __name__ == '__main__':
 
     # Create a session
     session = Session()
-    
+
     # Extract states containing 'a' and print
     states = session.query(State).filter(State.name.ilike('%a%')) \
                     .order_by(State.id).all()
