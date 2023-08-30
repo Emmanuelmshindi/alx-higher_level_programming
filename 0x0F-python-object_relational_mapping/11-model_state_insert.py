@@ -21,9 +21,9 @@ Base.metadata.create_all(engine)
 session = Session()
 
 # Add state
-state = State(name="Louisiana")
+state_new = State(name='Louisiana')
 
-session.add(state)
+session.add(state_new)
 
 session.commit()
 
