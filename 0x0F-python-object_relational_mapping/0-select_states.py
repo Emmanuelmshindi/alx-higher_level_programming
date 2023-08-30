@@ -21,14 +21,13 @@ if __name__ == '__main__':
     password = sys.argv[2]
     database = sys.argv[3]
 
-    db = MySQLdb.connect(host="localhost", port=3306, user=username,
-            passwd=password, db=database)
+    db = MySQLdb.connect(user=sys.argv[1], 
+                         passwd=sys.argv[2],
+                         db=sys.argv[3],
+                         host='localhost',
+                         port=3306)
 
     cur = db.cursor()
-
-    cur.execute("TRUNCATE TABLE states")
-
-    cur.execute(open("0-select_states.sql", "r").read())
 
     cur.execute("SELECT * FROM states ORDER BY id ASC")
 
