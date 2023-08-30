@@ -21,11 +21,11 @@ if __name__ == '__main__':
     session = Session()
 
     # Query the database and print the results
-    states = session.query(State).order_by(State.id).first()
+    state = session.query(State).first()
 
-    if states is None:
-        print("Nothing")
+    if state:
+        print("{}: {}".format(state.id, state.name))
     else:
-        print("{}: {}".format(states.id, states.name))
+        print("Nothing")
 
     session.close()
