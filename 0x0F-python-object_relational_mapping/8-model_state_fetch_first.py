@@ -10,7 +10,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
 if __name__ == '__main__':
-    engine = create_engine('mysql+mysqldb://{}:{}@localhost/{}'.format(
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
                            sys.argv[1], sys.argv[2], sys.argv[3]),
                            pool_pre_ping=True)
 
@@ -20,12 +20,13 @@ if __name__ == '__main__':
     # create a session
     session = Session()
 
-    # Query the database and print the results
-    state = session.query(State).first()
+    # extract first state
+    states = session.query(State).order_by(State.id).first()
 
-    if state:
-        print("{}: {}".format(state.id, state.name))
-    else:
+    # print state
+    if states is None:
         print("Nothing")
+    else:
+        print("{}: {}".format(states.id, states.name))
 
     session.close()
