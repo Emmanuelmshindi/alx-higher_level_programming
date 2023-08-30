@@ -4,31 +4,32 @@
     to the database hbtn_0e_6_usa
 """
 
+
 import sys
 from model_state import State, Base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import create_engine
 
-engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
-                       sys.argv[1], sys.argv[2], sys.argv[3]),
-                       pool_pre_ping=True)
+if __name__ == '__main__':
 
-Session = sessionmaker(bind=engine)
+    engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'.format(
+                           sys.argv[1], sys.argv[2], sys.argv[3]),
+                           pool_pre_ping=True)
 
-Base.metadata.create_all(engine)
+    Session = sessionmaker(bind=engine)
 
-# Create a session
-session = Session()
+    Base.metadata.create_all(engine)
 
-# Add state
-state_new = State(name='Louisiana')
+    # Create a session
+    session = Session()
 
-session.add(state_new)
+    # Add state
+    state_new = State(name='Louisiana')
+    session.add(state_new)
+    session.commit()
 
-session.commit()
+    state_added = session.query(State).filter(State.name == 'Louisiana').one()
 
-state_added = session.query(State).filter(State.name == 'Louisiana').one()
+    print(state_added.id)
 
-print(state_added.id)
-
-session.close()
+    session.close()
