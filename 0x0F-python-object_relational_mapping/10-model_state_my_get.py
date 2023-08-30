@@ -23,9 +23,11 @@ if __name__ == '__main__':
     session = Session()
 
     # Extract the id of the name passed and print
-    state = session.query(States).filter(State.name == sys.argv[4]).first()
+    state = session.query(State).filter(State.name == sys.argv[4]).one_or_none()
 
     if state:
         print(state.id)
     else:
         print("Not found")
+
+    session.close()
