@@ -2,6 +2,6 @@
 
 url="$1"
 
-size=$(curl -sl "$url" | iF 'content-length' | awk '{print$2}')
+size=$(curl -sl "$url" | grep 'content-length' | awk '{print $2}')
 
 echo "$size"
