@@ -24,8 +24,6 @@ fs.readFile(file1Path, 'utf8', (err, data1) => {
         console.error(`Error writing to ${outputPath}: ${err}`);
         return;
       }
-
-      process.stdout.write(concatData);
     });
   });
 });
