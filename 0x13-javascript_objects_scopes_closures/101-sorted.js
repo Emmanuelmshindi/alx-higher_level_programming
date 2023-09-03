@@ -11,7 +11,6 @@ for (const userID in dict) {
     userIDsByOccurrence[occurrence] = [];
   }
 
-
   userIDsByOccurrence[occurrence].push(userID);
 }
 
