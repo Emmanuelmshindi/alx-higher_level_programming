@@ -25,7 +25,7 @@ fs.readFile(file1Path, 'utf8', (err, data1) => {
         return;
       }
 
-      console.log(`${concatData}`);
+      process.stdout.write(concatData);
     });
   });
 });
